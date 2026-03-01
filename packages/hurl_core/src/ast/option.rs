@@ -17,7 +17,7 @@
  */
 use std::fmt;
 
-use crate::types::{Count, Duration, SourceString, ToSource};
+use crate::types::{Count, DurationUnit, SourceString, ToSource};
 
 use super::primitive::{
     LineTerminator, Number, Placeholder, SourceInfo, Template, Whitespace, U64,
@@ -236,6 +236,30 @@ impl fmt::Display for DurationOption {
             DurationOption::Literal(v) => write!(f, "{v}"),
             DurationOption::Placeholder(v) => write!(f, "{v}"),
         }
+    }
+}
+
+/// Represent a duration
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct Duration {
+    pub value: U64,
+    pub unit: Option<DurationUnit>,
+}
+
+impl Duration {
+    pub fn new(value: U64, unit: Option<DurationUnit>) -> Duration {
+        Duration { value, unit }
+    }
+}
+
+impl fmt::Display for Duration {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let unit = if let Some(value) = self.unit {
+            value.to_string()
+        } else {
+            String::new()
+        };
+        write!(f, "{}{unit}", self.value)
     }
 }
 

@@ -22,14 +22,14 @@
 //! Code heavily inspired from <https://github.com/rust-lang/rust/blob/master/compiler/rustc_ast/src/visit.rs>
 use crate::ast::{
     Assert, Base64, Body, BooleanOption, Bytes, Capture, Comment, Cookie, CookiePath, CountOption,
-    DurationOption, Entry, EntryOption, File, FilenameParam, FilenameValue, Filter, FilterValue,
-    Hex, HurlFile, IntegerValue, JsonValue, KeyValue, LineTerminator, Method, MultilineString,
-    MultipartParam, NaturalOption, Number, OptionKind, Placeholder, Predicate, PredicateFuncValue,
-    PredicateValue, Query, QueryValue, Regex, RegexValue, Request, Response, Section, SectionValue,
-    StatusValue, Template, VariableDefinition, VariableValue, VerbosityOption, VersionValue,
-    Whitespace, U64,
+    Duration, DurationOption, Entry, EntryOption, File, FilenameParam, FilenameValue, Filter,
+    FilterValue, Hex, HurlFile, IntegerValue, JsonValue, KeyValue, LineTerminator, Method,
+    MultilineString, MultipartParam, NaturalOption, Number, OptionKind, Placeholder, Predicate,
+    PredicateFuncValue, PredicateValue, Query, QueryValue, Regex, RegexValue, Request, Response,
+    Section, SectionValue, StatusValue, Template, VariableDefinition, VariableValue,
+    VerbosityOption, VersionValue, Whitespace, U64,
 };
-use crate::types::{Count, Duration, DurationUnit, SourceString, ToSource};
+use crate::types::{Count, DurationUnit, SourceString, ToSource};
 
 /// Each method of the `Visitor` trait is a hook to be potentially overridden. Each method's default
 /// implementation recursively visits the substructure of the input via the corresponding `walk` method;

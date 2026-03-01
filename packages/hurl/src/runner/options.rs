@@ -498,9 +498,11 @@ fn eval_number(number: &AstNumber) -> Value {
 
 #[cfg(test)]
 mod tests {
-    use hurl_core::ast::{Expr, ExprKind, Placeholder, SourceInfo, Variable, Whitespace, U64};
+    use hurl_core::ast::{
+        Duration, Expr, ExprKind, Placeholder, SourceInfo, Variable, Whitespace, U64,
+    };
     use hurl_core::reader::Pos;
-    use hurl_core::types::{Duration, DurationUnit, ToSource};
+    use hurl_core::types::{DurationUnit, ToSource};
 
     use super::*;
     use crate::runner::RunnerErrorKind;

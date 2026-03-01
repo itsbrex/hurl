@@ -17,10 +17,12 @@
  */
 use std::str::FromStr;
 
-use crate::parser::number::natural;
-use crate::parser::{ParseError, ParseErrorKind, ParseResult};
+use super::number::natural;
+use super::{ParseError, ParseErrorKind, ParseResult};
+
+use crate::ast::Duration;
 use crate::reader::Reader;
-use crate::types::{Duration, DurationUnit};
+use crate::types::DurationUnit;
 
 pub fn duration(reader: &mut Reader) -> ParseResult<Duration> {
     let value = natural(reader)?;

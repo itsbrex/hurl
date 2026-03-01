@@ -19,13 +19,13 @@ use base64::engine::general_purpose;
 use base64::Engine;
 use hurl_core::ast::{
     Assert, Base64, Body, BooleanOption, Bytes, Capture, CertificateAttributeName, Comment, Cookie,
-    CountOption, DurationOption, Entry, EntryOption, File, FilenameParam, Filter, FilterValue, Hex,
-    HurlFile, JsonListElement, JsonValue, KeyValue, MultilineString, MultilineStringKind,
-    MultipartParam, NaturalOption, OptionKind, Placeholder, Predicate, PredicateFuncValue,
-    PredicateValue, Query, QueryValue, Regex, RegexValue, Request, Response, StatusValue,
-    VersionValue,
+    CountOption, Duration, DurationOption, Entry, EntryOption, File, FilenameParam, Filter,
+    FilterValue, Hex, HurlFile, JsonListElement, JsonValue, KeyValue, MultilineString,
+    MultilineStringKind, MultipartParam, NaturalOption, OptionKind, Placeholder, Predicate,
+    PredicateFuncValue, PredicateValue, Query, QueryValue, Regex, RegexValue, Request, Response,
+    StatusValue, VersionValue,
 };
-use hurl_core::types::{Count, Duration, ToSource};
+use hurl_core::types::{Count, ToSource};
 
 use crate::format::serialize_json::JValue;
 

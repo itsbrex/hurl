@@ -32,8 +32,8 @@ use hurl_core::types::{BytesPerSec, Count, DurationUnit};
 use super::context::RunContext;
 use super::variables::TypeKind;
 use super::variables_file::VariablesFile;
-use super::{commands, get_version, secret, CliOptions};
-use super::{duration, variables, CliOptionsError, ErrorFormat, HttpVersion, IpResolve, Output};
+use super::{commands, duration, get_version, secret, CliOptions};
+use super::{variables, CliOptionsError, ErrorFormat, HttpVersion, IpResolve, Output};
 use super::{OutputType, Verbosity};
 
 /// Parses the command line arguments given a `context` and default options values.
@@ -409,7 +409,7 @@ fn connect_timeout(
     default_value: Duration,
 ) -> Result<Duration, CliOptionsError> {
     match get::<String>(arg_matches, "connect_timeout") {
-        Some(s) => get_duration(&s, DurationUnit::Second),
+        Some(s) => duration::duration_from_str(&s, DurationUnit::Second),
         None => Ok(default_value),
     }
 }
@@ -444,7 +444,7 @@ fn curl_file(arg_matches: &ArgMatches, default_value: Option<PathBuf>) -> Option
 
 fn delay(arg_matches: &ArgMatches, default_value: Duration) -> Result<Duration, CliOptionsError> {
     match get::<String>(arg_matches, "delay") {
-        Some(s) => get_duration(&s, DurationUnit::MilliSecond),
+        Some(s) => duration::duration_from_str(&s, DurationUnit::MilliSecond),
         None => Ok(default_value),
     }
 }
@@ -839,7 +839,7 @@ fn retry_interval(
     default_value: Duration,
 ) -> Result<Duration, CliOptionsError> {
     match get::<String>(arg_matches, "retry_interval") {
-        Some(s) => get_duration(&s, DurationUnit::MilliSecond),
+        Some(s) => duration::duration_from_str(&s, DurationUnit::MilliSecond),
         None => Ok(default_value),
     }
 }
@@ -899,7 +899,7 @@ fn test(arg_matches: &ArgMatches, default_value: bool) -> bool {
 
 fn timeout(arg_matches: &ArgMatches, default_value: Duration) -> Result<Duration, CliOptionsError> {
     match get::<String>(arg_matches, "max_time") {
-        Some(s) => get_duration(&s, DurationUnit::Second),
+        Some(s) => duration::duration_from_str(&s, DurationUnit::Second),
         None => Ok(default_value),
     }
 }
@@ -1029,17 +1029,4 @@ fn get_strings(matches: &ArgMatches, name: &str) -> Option<Vec<String>> {
     matches
         .get_many::<String>(name)
         .map(|v| v.map(|x| x.to_string()).collect())
-}
-
-/// Get duration from input string `s` and `default_unit`
-fn get_duration(s: &str, default_unit: DurationUnit) -> Result<Duration, CliOptionsError> {
-    let duration = duration::parse(s).map_err(CliOptionsError::Error)?;
-    let unit = duration.unit.unwrap_or(default_unit);
-    let millis = match unit {
-        DurationUnit::MilliSecond => duration.value.as_u64(),
-        DurationUnit::Second => duration.value.as_u64() * 1000,
-        DurationUnit::Minute => duration.value.as_u64() * 1000 * 60,
-        DurationUnit::Hour => duration.value.as_u64() * 1000 * 60 * 60,
-    };
-    Ok(Duration::from_millis(millis))
 }
