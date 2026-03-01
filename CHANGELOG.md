@@ -3,6 +3,7 @@
 
 Thanks to
 [@backtozero](https://github.com/backtozero),
+[@Hari-Oggy](https://github.com/Hari-Oggy),
 [@eirayuki](https://github.com/eirayuki),
 [@aageneralov](https://github.com/aageneralov),
 [@mateusz834](https://github.com/mateusz834),
@@ -23,8 +24,10 @@ Breaking Changes:
 Enhancements:
 
 * Add raw multiline strings and remove deprecated multiline attributes [#1733](https://github.com/Orange-OpenSource/hurl/issues/1733)
-* Add --no-cookie-store option to deactivate cookie storage for one file. [#2168](https://github.com/Orange-OpenSource/hurl/issues/2168)
+* Add --no-cookie-store option to deactivate cookie storage for one file [#2168](https://github.com/Orange-OpenSource/hurl/issues/2168)
 * Rename --noproxy to --no-proxy with backward compatible alias [#4709](https://github.com/Orange-OpenSource/hurl/issues/4709)
+* Separate color usage (ANSI codes) for standard output and standard error [#4790](https://github.com/Orange-OpenSource/hurl/issues/4790)
+* Add support for asserting/capturing TLS certificate value [#4698](https://github.com/Orange-OpenSource/hurl/issues/4698)
 * Add `rawbytes` query [#4250](https://github.com/Orange-OpenSource/hurl/issues/4250)
 * Using new JSONPath module implementing RFC 9535 [#4270](https://github.com/Orange-OpenSource/hurl/issues/4270)
 * Add --verbosity option (globally and per request) [#4613](https://github.com/Orange-OpenSource/hurl/issues/4613)
@@ -38,7 +41,7 @@ Bugs Fixed:
 
 Deprecations:
 
-* 4732 add stringdecode filter and make decode deprecated [#4732](https://github.com/Orange-OpenSource/hurl/issues/4732)
+* Add charsetDecode filter and make decode deprecated [#4732](https://github.com/Orange-OpenSource/hurl/issues/4732)
 
 
 
